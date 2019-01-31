@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Becca Source: comps/Navbar.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.flatly.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Becca</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="module-actions_auth.html">actions/auth</a></li><li><a href="module-actions_filter.html">actions/filter</a></li><li><a href="module-actions_login.html">actions/login</a></li><li><a href="module-actions_menu.html">actions/menu</a></li><li><a href="module-actions_messaging.html">actions/messaging</a></li><li><a href="module-actions_requestAcct.html">actions/requestAcct</a></li><li><a href="module-actions_search.html">actions/search</a></li><li><a href="module-actions_settings.html">actions/settings</a></li><li><a href="module-actions_table.html">actions/table</a></li><li><a href="module-comps_BulletChart.html">comps/BulletChart</a></li><li><a href="module-comps_Calendar.html">comps/Calendar</a></li><li><a href="module-comps_DatePicker.html">comps/DatePicker</a></li><li><a href="module-comps_Home.html">comps/Home</a></li><li><a href="module-comps_Login.html">comps/Login</a></li><li><a href="module-comps_Monolith.html">comps/Monolith</a></li><li><a href="module-comps_Navbar.html">comps/Navbar</a></li><li><a href="module-comps_Profiles.html">comps/Profiles</a></li><li><a href="module-comps_RequestAcct.html">comps/RequestAcct</a></li><li><a href="module-comps_Splash.html">comps/Splash</a></li><li><a href="module-comps_Table.html">comps/Table</a></li><li><a href="module-comps_Timeline.html">comps/Timeline</a></li><li><a href="module-entry_index.html">entry/index</a></li><li><a href="module-utils_monocle.html">utils/monocle</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: comps/Navbar.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">/**
+ * Actions for dealing with authentication and user credentials
+ * @author: Eric Moore &lt;eric@beccamail.org>
+ * @module comps/Navbar
+ */
+
+import { h } from 'hyperapp'
+import { Link } from '@hyperapp/router'
+//eslint-disable-line
+
+import BeccaLogo from '../../static/icons/Becca-Logo.svg'
+
+/**
+ * @author Eric Moore &lt;eric@openorg.institue>
+ * @module comps/Navbar
+ */
+
+/**
+ * Navbar JSX View Funciton.
+ *
+ * @description The navbar displays a set of links that are somewhat dyanmic to the application state
+ * @example
+ * haview = Navbar(null)
+ * haview({state:true})
+ * @returns {function({Object}): string} Returns the HA component funciton.
+ */
+export const Navbar = () => (state) => {
+  // make the navbar reflect the state of logged in
+  // loggd in gets the full nav bar..
+  // otherwise just show the top Becca option
+
+  // console.log({ loc: state.location })
+
+  if (state.credentials.jwt) { // logged in
+    return (
+      &lt;header style="margin:10px 0;" class="navbar">
+        &lt;section class="navbar-section">
+          &lt;Link class="navbar-brand mr-2" to="/"> &lt;img height={30} src={BeccaLogo}>&lt;/img>&lt;/Link>
+          {/* &lt;Link class="btn btn-link" to="/classes">Classes&lt;/Link> */}
+          &lt;Link class="btn btn-link" to="/outreach">Outreach&lt;/Link>
+          &lt;Link class="btn btn-link" to="/attendance">Attendance&lt;/Link>
+          &lt;Link class="btn btn-link" to="/birthdays">Birthdays&lt;/Link>
+          &lt;Link class="btn btn-link" to="/anniversaries">Anniversaries&lt;/Link>
+          &lt;Link class="btn btn-link" to="/settings">Settings&lt;/Link>
+          &lt;Link class="btn btn-link" to="/about">About&lt;/Link>
+          &lt;Link class="btn btn-link" to="/help">Help&lt;/Link>
+          &lt;Link class="btn btn-link" to="/logout">Logout&lt;/Link>
+        &lt;/section>
+      &lt;/header>
+    )
+  } else { // no valid user
+    return (
+      &lt;header style="margin:10px 0;" class="navbar">
+        &lt;section class="navbar-section">
+          &lt;Link class="btn btn-link" to="/request" >Request Account&lt;/Link>
+          &lt;Link class="btn btn-link" to="/splash" >Exmaple Page&lt;/Link>
+        &lt;/section>
+        &lt;section class="navbar-center">
+          &lt;Link to="/">
+            &lt;img height={35} src={BeccaLogo}>&lt;/img>
+          &lt;/Link>
+        &lt;/section>
+        &lt;section class="navbar-section">
+          &lt;Link class="btn btn-link" to="/login">Login&lt;/Link>
+        &lt;/section>
+      &lt;/header>
+    )
+  }
+}
+</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	Copyright © 2018-2019 - Eric Moore, & the contributors to Becca projects.
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on Thu Jan 31st 2019
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

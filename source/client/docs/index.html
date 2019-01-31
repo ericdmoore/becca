@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Becca Index</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.flatly.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Becca</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="module-actions_auth.html">actions/auth</a></li><li><a href="module-actions_filter.html">actions/filter</a></li><li><a href="module-actions_login.html">actions/login</a></li><li><a href="module-actions_menu.html">actions/menu</a></li><li><a href="module-actions_messaging.html">actions/messaging</a></li><li><a href="module-actions_requestAcct.html">actions/requestAcct</a></li><li><a href="module-actions_search.html">actions/search</a></li><li><a href="module-actions_settings.html">actions/settings</a></li><li><a href="module-actions_table.html">actions/table</a></li><li><a href="module-comps_BulletChart.html">comps/BulletChart</a></li><li><a href="module-comps_Calendar.html">comps/Calendar</a></li><li><a href="module-comps_DatePicker.html">comps/DatePicker</a></li><li><a href="module-comps_Home.html">comps/Home</a></li><li><a href="module-comps_Login.html">comps/Login</a></li><li><a href="module-comps_Monolith.html">comps/Monolith</a></li><li><a href="module-comps_Navbar.html">comps/Navbar</a></li><li><a href="module-comps_Profiles.html">comps/Profiles</a></li><li><a href="module-comps_RequestAcct.html">comps/RequestAcct</a></li><li><a href="module-comps_Splash.html">comps/Splash</a></li><li><a href="module-comps_Table.html">comps/Table</a></li><li><a href="module-comps_Timeline.html">comps/Timeline</a></li><li><a href="module-entry_index.html">entry/index</a></li><li><a href="module-utils_monocle.html">utils/monocle</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+    <section class="readme-section">
+        <article><h1>Becca</h1><p>Becca exists because some systems that we are forced to use are rubbish. Unabashed rubbish. So since life is too short only swim upstream in a stream of garbage. Becca will do that for me.</p>
+<p>Becca is an email bot - who will update these systems for me.</p>
+<p>I do the real work of reaching out to people - and Becca does the grunt work of updating systems that I did my job. Doing my job, and then telling someone that I did my job is not my idea of efficient use of my time.</p>
+<p>Becca solves some rubs that I have personally dealt with.</p>
+<ol>
+<li>Auto Updating Systems when I email folks (Becca has BCC feature)</li>
+<li>Batch Messaging Folks (Becca supports batch messages)</li>
+<li>I have 10 minutes to spare, who should I reach out to - (Becca can sort members by their participation)</li>
+</ol>
+<h2>Supported Personas</h2><ol>
+<li>Class Leaders<ol>
+<li>Class Director</li>
+<li>Class Teacher</li>
+</ol>
+</li>
+<li>Group Leaders<ol>
+<li>Group Leader Spouse</li>
+</ol>
+</li>
+<li>Class Member<ol>
+<li>Active</li>
+<li>Fringe</li>
+<li>Prospect</li>
+</ol>
+</li>
+</ol>
+<h2>User Stories</h2><ol>
+<li>Quick Actions:<ol>
+<li>ezMail: Opens email to &lt; Person &gt; &amp; with Becca in the bcc line<ul>
+<li>could use a <code>becca++newThread:1234asdf@beccamail.org</code> address</li>
+<li>could use the needed rule that <a href="mailto:`becca@beccamail.org">`becca@beccamail.org</a>` usually starts a new thread</li>
+</ul>
+</li>
+<li>ezCall: Open Up phone app &amp; reports that you made a call to &lt; Person &gt; at &lt; Time &gt;</li>
+<li>exText: Opens Messages to Person - but reports that you made a text to &lt; Person &gt; at &lt; Time &gt;</li>
+</ol>
+</li>
+<li>Public UI<ol>
+<li>The Public Internet gets a limited Navigation Menu</li>
+<li>The Public Internet can attempt to login using their ChurchDB credentials.</li>
+<li>The Public Internet can read help message on 'regarding password changes'</li>
+</ol>
+</li>
+<li>Register (aka - first time login)<ol>
+<li>I can save my credentials in the browser for next time.</li>
+<li>Greeting Welcome Message</li>
+<li>&quot;Who Is&quot; / &quot;What is&quot; Becca</li>
+<li>Confirm Email - [ it blocks the flow ? ]<ol>
+<li>Message: To confirm:: Reply to Becca's Mail with a &quot;HI&quot; or what ever you like. Other Actions: (send again - change email)</li>
+</ol>
+</li>
+<li>Skippable Tour</li>
+<li>Tour:<ol>
+<li>Search For &quot;Eric Moore&quot;</li>
+<li>Update His Record</li>
+<li>Make a Template</li>
+<li>Send an Email Message</li>
+<li>Send a Text</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>For a logged-in users:<ol>
+<li>Browse the class - and see &quot;who needs some love&quot;<ol>
+<li>Act: Call</li>
+<li>Act: Text</li>
+<li>Act: Email</li>
+<li>Act: Note</li>
+</ol>
+</li>
+<li>Browse my group looking for people &quot;needing some love&quot;<ol>
+<li>Act: Call</li>
+</ol>
+</li>
+<li>Browse a sorted list - still looking to love on people</li>
+<li>Select some folks from the table<ol>
+<li>Chose <code>Make Notes</code> -OR- <code>Send Messages</code></li>
+<li>compose the message OR import a template</li>
+<li>Make edits</li>
+<li>Save -OR- (Preview/Send/Schedule)</li>
+<li>Preview: Sends a mail preview to &quot;myown&quot; email</li>
+<li>Send the eMail/SMS</li>
+<li>Schedule the eMail</li>
+</ol>
+</li>
+<li>Compose Messages as a template<ol>
+<li>Incorporate <code>replacement words</code> `(</li>
+</ol>
+</li>
+<li>Compose Personal Message?</li>
+<li>Batch Tag Message<ul>
+<li>Write Message, Multi-Select, Submit</li>
+<li>Schedule Mail to go out<ul>
+<li>use the calender to schedule the mail</li>
+<li>the calendar to see the upcoming schedule</li>
+<li>the timeline to see if someone is getting &quot;pelted&quot;</li>
+</ul>
+</li>
+<li>But Really you do this<ol>
+<li>Write the message,</li>
+<li>Pick your people once in SMS app (group chat)</li>
+<li>Go to the not mobile friendly ChurchDB</li>
+<li>Maybe Paste the message there - maybe re-type it out</li>
+<li>Hunt and peck the same people with out scan/seek/search</li>
+<li>Multi-select Your Group</li>
+<li>Submit</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>Organize the Class List into My List<ol>
+<li>Send an email to that list on my email</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Mail Room (handler API)<ol>
+<li>Read the FROM &amp; To Lines<ul>
+<li>If the user is a registered Becca user, then process the email.</li>
+<li>Processing: make a comment from the sender on to all of the people on the TO line</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2>Installation</h2><p>git clone?</p>
+<p>npm i</p>
+<p>// npm i &lt; the officialName of the pkg&gt; -S | -D</p>
+<h2>Usage</h2><p>npm start</p>
+<h2>Options</h2><h3>CLI Opts</h3><h3>Lib API</h3><h3>Client Side DB</h3><p>Do we really need this anymore? Using Hyperapp for state? State will already by an in-memory DB....</p>
+<ol>
+<li><a href="http://lokijs.org">http://lokijs.org</a></li>
+<li><a href="http://taffydb.com/">http://taffydb.com/</a></li>
+<li><a href="https://github.com/hexojs/warehouse">https://github.com/hexojs/warehouse</a></li>
+<li><a href="https://github.com/louischatriot/nedb">https://github.com/louischatriot/nedb</a></li>
+</ol></article>
+    </section>
+
+
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	Copyright © 2018-2019 - Eric Moore, & the contributors to Becca projects.
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on Thu Jan 31st 2019
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+    "_meta":{  
+        "count":"1",
+        "links":{
+            "@next":"https://",
+            "@prev":"https://"
+        }
+    },
+    "members":[
+        {
+            "name": "Firsto Namei",
+            "first": "Firsto",
+            "last": "Namei",
+            "dob":12345678,
+            "asd":true
+        }
+    ]
+}

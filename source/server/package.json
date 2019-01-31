@@ -1,0 +1,38 @@
+{
+  "name": "becca-server",
+  "version": "0.0.1",
+  "description": "Becca is an Email Processor",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon app.local.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eric Moore",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.301.0",
+    "aws-serverless-express": "^3.3.5",
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.3",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "htmlparser2": "^3.9.2",
+    "jsdom": "^12.0.0",
+    "jsonwebtoken": "^8.3.0",
+    "jsrsasign": "^8.0.12",
+    "lodash": "^4.17.10",
+    "md5": "^2.2.1",
+    "mkdirp": "^0.5.1",
+    "morgan": "^1.9.0",
+    "ms": "^2.1.1",
+    "parse5": "^5.1.0",
+    "puppeteer": "^1.7.0",
+    "serverless": "^1.30.3",
+    "serverless-http": "^1.6.0",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4",
+    "serverless-offline": "^3.25.9"
+  }
+}

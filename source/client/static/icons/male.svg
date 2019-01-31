@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="94px" height="94px" viewBox="0 0 94 94" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>male</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="47" cy="47" r="47"></circle>
+    </defs>
+    <g id="male" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Mask" fill="#EDE9E9" xlink:href="#path-1"></use>
+            <g mask="url(#mask-2)" fill="#AAB5DC" id="Oval">
+                <g transform="translate(19.000000, 3.000000)">
+                    <circle cx="28.5" cy="19.5" r="19.5"></circle>
+                    <path d="M28.5,93 C44.2401154,93 57,81.2401154 57,65.5 C57,49.7598846 44.2401154,37 28.5,37 C12.7598846,37 0,49.7598846 0,65.5 C0,81.2401154 12.7598846,93 28.5,93 Z"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

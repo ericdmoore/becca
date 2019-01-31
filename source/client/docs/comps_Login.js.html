@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Becca Source: comps/Login.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.flatly.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Becca</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="module-actions_auth.html">actions/auth</a></li><li><a href="module-actions_filter.html">actions/filter</a></li><li><a href="module-actions_login.html">actions/login</a></li><li><a href="module-actions_menu.html">actions/menu</a></li><li><a href="module-actions_messaging.html">actions/messaging</a></li><li><a href="module-actions_requestAcct.html">actions/requestAcct</a></li><li><a href="module-actions_search.html">actions/search</a></li><li><a href="module-actions_settings.html">actions/settings</a></li><li><a href="module-actions_table.html">actions/table</a></li><li><a href="module-comps_BulletChart.html">comps/BulletChart</a></li><li><a href="module-comps_Calendar.html">comps/Calendar</a></li><li><a href="module-comps_DatePicker.html">comps/DatePicker</a></li><li><a href="module-comps_Home.html">comps/Home</a></li><li><a href="module-comps_Login.html">comps/Login</a></li><li><a href="module-comps_Monolith.html">comps/Monolith</a></li><li><a href="module-comps_Navbar.html">comps/Navbar</a></li><li><a href="module-comps_Profiles.html">comps/Profiles</a></li><li><a href="module-comps_RequestAcct.html">comps/RequestAcct</a></li><li><a href="module-comps_Splash.html">comps/Splash</a></li><li><a href="module-comps_Table.html">comps/Table</a></li><li><a href="module-comps_Timeline.html">comps/Timeline</a></li><li><a href="module-entry_index.html">entry/index</a></li><li><a href="module-utils_monocle.html">utils/monocle</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: comps/Login.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">/**
+ * Actions for dealing with authentication and user credentials
+ * @author: Eric Moore &lt;eric@beccamail.org>
+ * @module comps/Login
+ */
+
+/* eslint-disable no-unused-vars */
+import { h } from 'hyperapp'
+import { Link, Route, Switch, Redirect, location } from '@hyperapp/router' //eslint-disable-line
+/* eslint-enable no-unused-vars */
+
+import cc from 'classcat'
+
+export const Login = () => (state, actions) => {
+  const formIsEmpty = state.credentials.user.length === 0 || state.credentials.pass.length === 0
+  return (
+    &lt;div>
+      &lt;div style={cc([{ 'display:none;': state.errorMsg.length === 0 }])}
+        class="toast toast-error">
+        &lt;button class="btn btn-clear float-right" onclick={actions.errorMsg('')}>&lt;/button>
+        {state.errorMsg}
+      &lt;/div>
+      &lt;div class="form-group">
+
+        &lt;input type="text" name="honey" id="honey" value="" style="display:none">&lt;/input>
+
+        &lt;label class="form-label" for="input-example-1">Username&lt;/label>
+        &lt;input
+          id="arenaUserName" type='text'
+          class="form-input"
+          value={state.credentials.user}
+          placeholder="ChurchDB Username"
+          aria-label="ChurchDB Username"
+          oncreate={element => element.focus()}
+          // onkeyup={({ target: { value }, keyCode }) => keyCode === 13 &amp;&amp; value !== '' ? actions.add() : null}
+          oninput={({ target: { value } }) => actions.userName(value)}
+        />
+
+        &lt;label class="form-label" for="input-example-1">Password&lt;/label>
+        &lt;input
+          id="" type="password"
+          class="form-input"
+          placeholder="Arena Password"
+          aria-label="Arena Password"
+          oninput={({ target: { value } }) => actions.userPassword(value)}
+        />
+
+        &lt;Checkbox
+          label='Keep Me Logged In'
+          isActive={state.credentials.stayLoggedIn}
+        />
+
+        &lt;input type="hidden" name="hiddden" value="Password"/>
+
+        &lt;div style='display:flex; justify-content:space-evenly;'>
+          &lt;button
+            class={cc(['btn btn-primary',
+              { 'loading': state.credentials.isLoading },
+              { 'disabled': state.credentials.isLoading || formIsEmpty }])}
+            onclick={() => actions.loginSubmitted(fetch)}>
+          Login {/* formIsEmpty ? 'Fill In User/Password' : 'Login' */}
+          &lt;/button>
+          &lt;a href="#">Forgot??&lt;/a>
+
+        &lt;/div>
+        &lt;div style='display:flex; justify-content:space-evenly;'>
+          &lt;a href="#">Request An Account&lt;/a>
+          &lt;a onclick={() => actions.printEverything()}> State Wat?&lt;/a>
+        &lt;/div>
+      &lt;/div>
+    &lt;/div>
+  )
+}
+
+/**
+ * A Great Title Here.
+ *
+ * @description Somethin good.
+ * @param {Object} opts - Options.
+ * @param {string} [opts.label=''] - Check box text to show the user.
+ * @param {boolean} [opts.isActive=false] - The initial state of the checkbox.
+ * @param {string} [opts._idInput='stayLoggedIn'] - Give the DOM element an ID.
+ * @param {string} [opts._nameInput='stayLoggedIn'] - Check box text to show the user.
+ * @example
+ * var haComponent = Checkbox()
+ * haComponent({state:true}, {actions:true})
+ * @returns {function({Object}, {Object}): string} - The chain of curried functions.
+ */
+const Checkbox = ({ label, isActive, _idInput, _nameInput } =
+{ _idInput: 'stayLoggedIn', _nameInput: 'stayLoggedIn', label: '', isActive: false }) => (state, actions) => {
+  const checked = () => isActive ? 'checked' : ''
+
+  return (
+    &lt;div class="form-group">
+      &lt;label class="form-switch">
+        &lt;input
+          type="checkbox"
+          id={_idInput}
+          name={_nameInput}
+          onclick={() => actions.toggleUserStayLoggedIn()}
+          checked={isActive}
+        />
+        &lt;i class="form-icon">&lt;/i> {label}
+      &lt;/label>
+    &lt;/div>)
+}
+</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	Copyright © 2018-2019 - Eric Moore, & the contributors to Becca projects.
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on Thu Jan 31st 2019
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

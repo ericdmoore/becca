@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Becca Source: comps/table.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.flatly.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Becca</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="module-actions_auth.html">actions/auth</a></li><li><a href="module-actions_filter.html">actions/filter</a></li><li><a href="module-actions_login.html">actions/login</a></li><li><a href="module-actions_menu.html">actions/menu</a></li><li><a href="module-actions_messaging.html">actions/messaging</a></li><li><a href="module-actions_requestAcct.html">actions/requestAcct</a></li><li><a href="module-actions_search.html">actions/search</a></li><li><a href="module-actions_settings.html">actions/settings</a></li><li><a href="module-actions_table.html">actions/table</a></li><li><a href="module-comps_BulletChart.html">comps/BulletChart</a></li><li><a href="module-comps_Calendar.html">comps/Calendar</a></li><li><a href="module-comps_DatePicker.html">comps/DatePicker</a></li><li><a href="module-comps_Home.html">comps/Home</a></li><li><a href="module-comps_Login.html">comps/Login</a></li><li><a href="module-comps_Monolith.html">comps/Monolith</a></li><li><a href="module-comps_Navbar.html">comps/Navbar</a></li><li><a href="module-comps_Profiles.html">comps/Profiles</a></li><li><a href="module-comps_RequestAcct.html">comps/RequestAcct</a></li><li><a href="module-comps_Splash.html">comps/Splash</a></li><li><a href="module-comps_Table.html">comps/Table</a></li><li><a href="module-comps_Timeline.html">comps/Timeline</a></li><li><a href="module-entry_index.html">entry/index</a></li><li><a href="module-utils_monocle.html">utils/monocle</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: comps/table.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">/**
+ * Actions for dealing with authentication and user credentials
+ * @author: Eric Moore &lt;eric@beccamail.org>
+ * @module comps/Table
+ */
+
+/* eslint no-unused-vars: ["error", { "args": "none" }] */
+/**
+    *
+    * Data Lifecycle = handled outside the component.
+    *
+    * Manages
+    *  + SortedBy
+    *    + manage the sort indicator
+    *  + Labels
+    *    + order, alias, and *
+    *  + Filters
+    *    + driven by something else
+    *
+    * What about?
+    *  1. subcomponents?
+    *  1. multi-column sort?
+    *  1. pivots - aggregation?
+    *  1. Footer?
+    *  1. Editable Contents?
+    *  1. fixed header + vert scroll
+    *  1. selectable rows?
+    *  1. multi-selectable rows?
+    *  1. add sort actions to actions?
+    *
+    *  Defaults:
+    *  1. Give an array of [{Objs},{Objs}]
+    *  1. Sets the header labels as the top level keys of elem:0
+    *  1. Prints all the elems in the array
+    *  1. If the header is configured with a column list
+    */
+
+/* eslint-disable no-unused-vars */
+import { h } from 'hyperapp'
+/* eslint-enable no-unused-vars */
+
+import get from 'lodash.get'
+// import deepSet from '../actions/index'
+
+const TableHeader = () => (state, actions) => {
+  const labels = Object.entries(state.tables.main.header.ilt).map(([, { label }]) => label)
+
+  return (&lt;thead>&lt;tr>
+    {labels.map(L => &lt;th> {L.toString()} &lt;/th>)}
+  &lt;/tr>&lt;/thead>)
+}
+
+// const objComb = (obj, combArr = ['id', 'name', 'username', 'email'], getr = get) => {
+//   if (!Array.isArray(combArr)) {
+//     throw Error('combArr is not an array. It needs to be!')
+//   } else {
+//     return combArr.map(idx => getr(obj, idx))
+//   }
+// }
+
+// const rowTransform = (inputArr, fArr) => inputArr.map((inputElem, i) => fArr[i](inputElem))
+
+const combAndTransform = (obj, arrIdxnTransforms) => {
+  return arrIdxnTransforms.map(([idx, trans]) => trans(get(obj, idx), obj))
+}
+
+const TableRow = ({ row }) => (state) => {
+  // look at the alias list
+  // pluck out the data elements
+  // @ref: https://css-tricks.com/snippets/html/mailto-links/
+
+  const idTrans = Object.entries(state.tables['main'].header.ilt)
+    .map(([ _id, { trans } ]) => [_id, trans])
+    .map(([_id, t]) => {
+      if (_id === '!actions') {
+        return [_id,
+          (_, o) => {
+            return (&lt;div>
+              &lt;a
+                onclick={() => alert('clicked')}
+                href={`mailto:${get(o, 'email')}?cc:becca+1234567890@beccamail.org&amp;bcc:becca+1234567890@beccamail.org`}>
+                &lt;i style="margin:0 2px;" class="far fa-envelope">&lt;/i>
+              &lt;/a>
+              &lt;a
+                onclick={() => alert('clicked')}
+                href={`tel:${get(o, 'phone')}`}>
+                &lt;i style="margin:0 2px;" class="fas fa-phone">&lt;/i>
+              &lt;/a>
+              &lt;a
+                onclick={() => alert('clicked')}
+                href={`sms:${get(o, 'phone')}`}>
+                &lt;i style="margin:0 2px;" class="fas fa-comment-dots">&lt;/i>
+              &lt;/a>
+              &lt;a
+                onclick={() => alert('clicked')}
+                href={`sms:${get(o, 'phone')}`}>
+                &lt;i style="margin:0 2px;" class="fas fa-clipboard-check">&lt;/i>
+              &lt;/a>
+            &lt;/div>)
+          }
+        ]
+      } if (_id === '!avatar') {
+        return [_id, (_, o) => {
+          return (
+            &lt;figure class="avatar avatar-sm"
+              style="background-color: #5755d9;"
+              data-initial={get(o, 'name').slice(0, 2)}>
+              &lt;img src={ get(o, 'male') ? '/icons/male.svg' : '/icons/female.svg' } alt="..."/>
+            &lt;/figure>)
+        }]
+      } else return [_id, t]
+    })
+
+  return (
+    &lt;tr>
+      {combAndTransform(row, idTrans).map(elem => &lt;td>{elem}&lt;/td>)}
+    &lt;/tr>
+  )
+}
+const TableBody = ({ data }) => (state) => {
+  // console.log(data)
+  // data.map(arr => console.log({ arr }))
+
+  const dataWithFilter = (state.filter === ''
+    ? data
+    : data.map(arr => arr.filter(elem => get(elem, 'name').includes(state.filter))))
+
+  return (
+    &lt;tbody>
+      {dataWithFilter.map(arr => arr.map(elem => &lt;TableRow row={elem}>&lt;/TableRow>)) }
+    &lt;/tbody>)
+}
+
+const TableMenuBar = ({ title, filter }) => (state, actions) => {
+  return (
+    &lt;div class="d-flex" style="justify-content:space-between">
+      &lt;h2>{title}&lt;/h2>
+      &lt;div class="input-group input-inline">
+        &lt;input
+          type="text"
+          class="form-input"
+          placeholder="filter"
+          value={filter}
+          oninput={e => actions.setFilter(e.target.value)}
+        />
+        &lt;button class="btn btn-primary input-group-btn">Filter&lt;/button>
+      &lt;/div>
+    &lt;/div>
+  )
+}
+
+// const TableExperiment = () => () => {
+//   return (
+//     &lt;div class="form-autocomplete">
+//       &lt;div class="form-autocomplete-input form-input">
+//         &lt;div class="chip">
+//           &lt;img
+//             src="img/avatar-1.png" class="avatar avatar-sm"
+//             alt="Thor Odinson"/>Thor Odinson
+//           &lt;a href="#" class="btn btn-clear" aria-label="Close" role="button">&lt;/a>
+//         &lt;/div>
+//         &lt;input class="form-input" type="text" placeholder="typing here"/>
+//       &lt;/div>
+
+//       &lt;ul class="menu">
+//         &lt;li class="menu-item">
+//           &lt;a href="#">
+//             &lt;div class="tile tile-centered">
+//               &lt;div class="tile-icon">...&lt;/div>
+//               &lt;div class="tile-content">...&lt;/div>
+//             &lt;/div>
+//           &lt;/a>
+//         &lt;/li>
+//       &lt;/ul>
+//     &lt;/div>
+//   )
+// }
+
+export const Table = ({ id = 'main', header = null, body = null }) => (state, actions) => {
+  // console.log(`YAY a table component`)
+  // console.log({ id, header, body })
+  return (
+    &lt;div>
+      &lt;TableMenuBar title="Class Members" filter={state.filter}/>
+      &lt;table class="table table-striped table-hover">
+        &lt;TableHeader config={header}>&lt;/TableHeader>
+        &lt;TableBody data={state.classLists[state.tables[id].body.dataSrc]}>&lt;/TableBody>
+      &lt;/table>
+    &lt;/div>
+  )
+}
+/* eslint-enable no-unused-vars */
+</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	Copyright © 2018-2019 - Eric Moore, & the contributors to Becca projects.
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on Thu Jan 31st 2019
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

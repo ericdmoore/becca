@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Becca Module: comps/Splash</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.flatly.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Becca</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="module-actions_auth.html">actions/auth</a></li><li><a href="module-actions_filter.html">actions/filter</a></li><li><a href="module-actions_login.html">actions/login</a></li><li><a href="module-actions_menu.html">actions/menu</a></li><li><a href="module-actions_messaging.html">actions/messaging</a></li><li><a href="module-actions_requestAcct.html">actions/requestAcct</a></li><li><a href="module-actions_search.html">actions/search</a></li><li><a href="module-actions_settings.html">actions/settings</a></li><li><a href="module-actions_table.html">actions/table</a></li><li><a href="module-comps_BulletChart.html">comps/BulletChart</a></li><li><a href="module-comps_Calendar.html">comps/Calendar</a></li><li><a href="module-comps_DatePicker.html">comps/DatePicker</a></li><li><a href="module-comps_Home.html">comps/Home</a></li><li><a href="module-comps_Login.html">comps/Login</a></li><li><a href="module-comps_Monolith.html">comps/Monolith</a></li><li><a href="module-comps_Navbar.html">comps/Navbar</a></li><li><a href="module-comps_Profiles.html">comps/Profiles</a></li><li><a href="module-comps_RequestAcct.html">comps/RequestAcct</a></li><li><a href="module-comps_Splash.html">comps/Splash</a></li><li><a href="module-comps_Table.html">comps/Table</a></li><li><a href="module-comps_Timeline.html">comps/Timeline</a></li><li><a href="module-entry_index.html">entry/index</a></li><li><a href="module-utils_monocle.html">utils/monocle</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	<h1 class="page-title">Module: comps/Splash</h1>
+<section>
+
+<header>
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script><ul>
+<li>Request an Account</li>
+<li>After Approval, confirm your email</li>
+<li>From there you never have to login if you don't want to</li>
+<li>you might just use your email app and:<ul>
+<li>Send emails to your class mates and bcc: <a href="mailto:`becca@beccamail.org">`becca@beccamail.org</a>`</li>
+<li>When you do this, Becca makes notes on your behalf in the churchDB</li>
+</ul>
+</li>
+<li>You Contact and care for your class - with no more signing in to things that never really worked great on our phone to begin with</li>
+<li>Need to send an email blast ot your class?<ul>
+<li>Email your whole class, and just add <a href="mailto:`becca@beccamail.org">`becca@beccamail.org</a>` to your bcc list</li>
+<li>Becca makes one note for every email listed</li>
+<li>If you have the email for someone not in the church system, Becca will send you an email saying could not add note for email: &lt; so and so &gt;</li>
+</ul>
+</li>
+<li>If you do login to beccamail.org<ul>
+<li>you can send a text, or call someone - just by pressing the &quot;text&quot; or &quot;call&quot; icons</li>
+<li>when you press the button - Becca notes that YOU &lt; called &gt; Person:So and So at &lt; The Time &gt;<ul>
+<li>Becca assumes you are a busy person who is just trying to contact a few people, and not worrying about if the chruchDB needs to know about the details.</li>
+</ul>
+</li>
+<li>Sometimes you WANT the churhcDB to know the deails of a conversaion<ul>
+<li>In those cases, send a &quot;recorded message&quot; - meaning - write the message from Becca, and hit send.</li>
+<li>Hitting send will throw all the text into your messages app.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></div>
+        
+
+        
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+	<dt class="tag-author method-doc-label method-doc-details-label">Author:</dt>
+	<dd class="tag-author">
+		<ul>
+			<li>Eric Moore</li>
+			</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="comps_Splash.js.html">comps/Splash.js</a>,
+				 <a href="comps_Splash.js.html#sunlight-1-line-3">line 3</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	Copyright © 2018-2019 - Eric Moore, & the contributors to Becca projects.
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on Thu Jan 31st 2019
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

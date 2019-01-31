@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Becca Source: comps/home.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.flatly.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Becca</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="module-actions_auth.html">actions/auth</a></li><li><a href="module-actions_filter.html">actions/filter</a></li><li><a href="module-actions_login.html">actions/login</a></li><li><a href="module-actions_menu.html">actions/menu</a></li><li><a href="module-actions_messaging.html">actions/messaging</a></li><li><a href="module-actions_requestAcct.html">actions/requestAcct</a></li><li><a href="module-actions_search.html">actions/search</a></li><li><a href="module-actions_settings.html">actions/settings</a></li><li><a href="module-actions_table.html">actions/table</a></li><li><a href="module-comps_BulletChart.html">comps/BulletChart</a></li><li><a href="module-comps_Calendar.html">comps/Calendar</a></li><li><a href="module-comps_DatePicker.html">comps/DatePicker</a></li><li><a href="module-comps_Home.html">comps/Home</a></li><li><a href="module-comps_Login.html">comps/Login</a></li><li><a href="module-comps_Monolith.html">comps/Monolith</a></li><li><a href="module-comps_Navbar.html">comps/Navbar</a></li><li><a href="module-comps_Profiles.html">comps/Profiles</a></li><li><a href="module-comps_RequestAcct.html">comps/RequestAcct</a></li><li><a href="module-comps_Splash.html">comps/Splash</a></li><li><a href="module-comps_Table.html">comps/Table</a></li><li><a href="module-comps_Timeline.html">comps/Timeline</a></li><li><a href="module-entry_index.html">entry/index</a></li><li><a href="module-utils_monocle.html">utils/monocle</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: comps/home.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">/**
+ * Actions for dealing with authentication and user credentials
+ * @author: Eric Moore &lt;eric@beccamail.org>
+ * @module comps/Home
+ */
+
+/**
+ * Home Page Deals with
+ * =========================
+ *
+ *  First Deals with My vs Public Home
+ *
+ *
+ * 1. How am I doing?
+ *    1. Barry Goal: 1 contact per week.
+ *    1. Boot Risk: if you don't contact anyone for 180 days - you may lose your credentials and be asked to complete a training session
+ *
+ *
+ * 1. How are my people doing?
+ *    1. Days Since Contact
+ *    1. Days Since Last Attendance
+ *    1. Contacts in the last 28 days
+ *    1. Praise notes?
+ *
+ *
+ * 1. What do I need to do?
+ *    1. Contact Members (Add Touches)
+ *    1. Write message blasts
+ *    1. Add A Note.
+ *
+ *
+ * 1. Give Feedback on the prompts per person
+ *    1. Thumbs up/down on "Maybe Send this _______ to _______"
+ *
+ *
+ * 1. Are my Goals getting closer?
+ *    1. Goal: % Group Attendance on some Sunday?
+ *    1. Goal: Get _____ &amp; ____ to show up
+ *    1. Goal:
+ *
+ *
+ * 1. How Am I doing compared to my peers?
+ *    1. Cross Compare
+ *
+ *
+ */
+
+/**
+  * Home Sections
+  * ==================
+  *
+  * Suggestions:
+  * - Contact this person:
+  *
+  * Goals: (`+/goals`)
+  * - Contact my whole group 1 per week.
+  * + I can add a handwritten goal for my self
+  *   + optional: deadline
+  *   + update progress:
+  *
+  * My Activity: (`+/activity`)
+  * - my timeline
+  *
+  * My Group Activity: (`+/activity/groups/:id`)
+  * - Graph of class attendance
+  * - Graph of "my group" attedance
+  *   + prompt: make my group
+  * - List my group by most consistent
+  * -
+  *
+  * Class Activity: (`+/activity/classes/:id`)
+  * - list of annoucements from members
+  * - scatter plot
+  *
+  *
+  * Graphs:
+  * - Total Class Attendance
+  *     - Line Chart
+  * - Scatter plot each point is a person, X=#notes just from me, Y=Attendance, dot size= notes from anyone, ea
+  *     - https://eventbrite.github.io/britecharts/tutorial-scatter-plot.html
+  * - Bullet Chart of touches `for my group`|`for the whole class` over last 28 days
+  *    - https://eventbrite.github.io/britecharts/tutorial-bullet.html
+  *    - target= People * 4 Weeks * 1 contact / week = 4P over 28 days
+  *    - bad= 1.5P over 28 days
+  *    - satisfactory = 2.5P over 28 days
+  *    - good = 3P over 28 days
+  *    - max = my max over the last 180 days
+  *
+  */
+
+/* eslint-disable no-unused-vars */
+import { h } from 'hyperapp'
+import { Link, Route, Switch, Redirect, location } from '@hyperapp/router' //eslint-disable-line
+/* eslint-enable no-unused-vars */
+
+import cc from 'classcat'
+import { Bullet } from './BulletChart.js'
+import { CalendarData } from '../utils/Calendar.helper.js'
+
+const Goals = ({ match }) => () => {
+  console.log(match)
+  return (
+    &lt;div>
+      &lt;div class="my-2 tile">
+        &lt;div class="tile-icon">
+          &lt;figure class="avatar avatar-lg">
+            &lt;img src="//picturepan2.github.io/spectre/img/avatar-2.png" alt="Avatar"/>
+          &lt;/figure>
+        &lt;/div>
+        &lt;div class="tile-content">
+          &lt;p class="tile-title">The Avengers&lt;/p>
+          &lt;p class="tile-subtitle">Earth's Mightiest Heroes joined forces to take on
+      threats that were too big for any one hero to tackle...&lt;/p>
+          &lt;div class="bar bar-sm">
+            &lt;div class="bar-item" role="progressbar" style="width:25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">&lt;/div>
+          &lt;/div>
+        &lt;/div>
+        &lt;div class="tile-action">
+          &lt;button class="btn btn-primary" disabled >Update&lt;/button>
+          &lt;button class="btn" disabled>X&lt;/button>
+        &lt;/div>
+      &lt;/div>
+      &lt;div class=" my-2 tile">
+        &lt;div class="tile-icon">
+          &lt;figure class="avatar avatar-lg">
+            &lt;img src="//picturepan2.github.io/spectre/img/avatar-2.png" alt="Avatar"/>
+          &lt;/figure>
+        &lt;/div>
+        &lt;div class="tile-content">
+          &lt;p class="tile-title">The Avengers&lt;/p>
+          &lt;p class="tile-subtitle">Earth's Mightiest Heroes joined forces to take on
+      threats that were too big for any one hero to tackle...&lt;/p>
+          &lt;div class="bar bar-sm">
+            &lt;div class="bar-item" role="progressbar" style="width:25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">&lt;/div>
+          &lt;/div>
+        &lt;/div>
+        &lt;div class="tile-action">
+          &lt;button class="btn btn-primary" >Update&lt;/button>
+          &lt;button class="btn">X&lt;/button>
+        &lt;/div>
+      &lt;/div>
+    &lt;/div>
+  )
+}
+const Contacts = () => () => {
+  const people = 8
+  const p = people
+  const days = 28
+  const expected = people * days / 7
+
+  const r = 100
+  const randArray = ({ length, r }) => Array.from({ length }, () => Math.floor(Math.random() * r)).sort((a, b) => a - b)
+  const randArroBreaks = Array.from(
+    { length: 10 },
+    () => randArray({ length: Math.floor(Math.random() * 40),
+      r: Math.floor(Math.random() * r) })
+  )
+
+  return (&lt;ul>
+    &lt;li>
+      &lt;Bullet
+        _width={100} max={r}
+        actual={Math.floor(Math.random() * r)}
+        target={Math.floor(Math.random() * r)}
+        breaks={randArroBreaks[0]}/>
+    &lt;/li>
+    &lt;li>
+      &lt;Bullet
+        _width={150} max={r}
+        actual={Math.floor(Math.random() * r)}
+        target={Math.floor(Math.random() * r)}
+        breaks={randArroBreaks[1]}/>
+    &lt;/li>
+    &lt;li>
+      &lt;Bullet
+        _width={200} max={r}
+        actual={Math.floor(Math.random() * r)}
+        target={Math.floor(Math.random() * r)}
+        breaks={randArroBreaks[2]}/>
+    &lt;/li>
+    &lt;li>
+      &lt;Bullet
+        _width={250} max={r}
+        actual={Math.floor(Math.random() * r)}
+        target={Math.floor(Math.random() * r)}
+        breaks={randArroBreaks[3]}/>
+    &lt;/li>
+    &lt;li>
+      &lt;Bullet
+        _width={300} max={r}
+        actual={Math.floor(Math.random() * r)}
+        target={Math.floor(Math.random() * r)}
+        breaks={randArroBreaks[4]}/>
+    &lt;/li>
+    &lt;li>
+      &lt;Bullet
+        _width={350} max={r}
+        actual={Math.floor(Math.random() * r)}
+        target={Math.floor(Math.random() * r)}
+        breaks={randArroBreaks[5]}/>
+    &lt;/li>
+    &lt;li>
+      &lt;Bullet
+        _width={400} max={r}
+        actual={Math.floor(Math.random() * r)}
+        target={Math.floor(Math.random() * r)}
+        breaks={randArroBreaks[6]}/>
+    &lt;/li>
+    &lt;li>
+      &lt;Bullet
+        _width={450} max={r}
+        actual={Math.floor(Math.random() * r)}
+        target={Math.floor(Math.random() * r)}
+        breaks={randArroBreaks[7]}/>
+    &lt;/li>
+    &lt;li>
+      &lt;Bullet
+        _width={500} max={r}
+        actual={Math.floor(Math.random() * r)}
+        target={Math.floor(Math.random() * r)}
+        breaks={randArroBreaks[8]}/>
+    &lt;/li>
+    &lt;li>
+      &lt;Bullet
+        _width={550} max={r}
+        actual={Math.floor(Math.random() * r)}
+        target={Math.floor(Math.random() * r)}
+        breaks={randArroBreaks[9]}/>
+    &lt;/li>
+    &lt;li>
+      &lt;Bullet
+        _height={60} actual={730}
+        target={630} max={650}
+        breaks={[100, 120, 140, 180, 260, 500, 400, 220, 365]}/>
+    &lt;/li>
+    &lt;li>
+      &lt;Bullet
+        _height={30} actual={210}
+        target={250} max={300}
+        breaks={[105, 155, 208]}/>
+    &lt;/li>
+    &lt;li>
+      &lt;Bullet
+        _height={40} actual={200}
+        target={320} max={400}
+        breaks={[100, 200, 300]}/>
+    &lt;/li>
+    &lt;li>
+      &lt;Bullet
+        _height={50} actual={200}
+        target={343} max={500}
+        forecast={340}
+        breaks={[100, 400, 200, 300]}/>
+    &lt;/li>
+    &lt;li>
+      &lt;Bullet
+        _height={70} actual={75}
+        target={65} max={100}
+        breaks={[10, 25, 40, 57]}/>
+    &lt;/li>
+    &lt;li>
+      &lt;Bullet
+        _height={35} actual={expected - 2}
+        target={expected} max={expected + 10}
+        breaks={[p, p * 1.5, p * 2.5, p * 3.5]}/>
+    &lt;/li>
+    &lt;li>
+      &lt;Bullet
+        _width={500} _height={22} max={55}
+        actual={34} target={40}
+        breaks={[ 8, 12, 20, 28, 34 ]}/>
+    &lt;/li>
+  &lt;/ul>)
+}
+const Activity = () => () => {
+  const calendarData = CalendarData()
+  return (
+
+    &lt;div class="calendar calendar-lg">
+      {/*
+        ToDo
+        - tooltip = from server
+        - range = DOM selections
+        - appt/Events = from server
+        */}
+      &lt;div class="calendar-nav navbar">
+        &lt;button class="btn btn-action btn-link btn-lg">
+          &lt;i class="icon icon-arrow-left">&lt;/i>
+        &lt;/button>
+        &lt;div class="navbar-primary">{`${calendarData.header.mm} ${calendarData.header.y}`}&lt;/div>
+        &lt;button class="btn btn-action btn-link btn-lg">
+          &lt;i class="icon icon-arrow-right">&lt;/i>
+        &lt;/button>
+      &lt;/div>
+
+      &lt;div class="calendar-container">
+        &lt;div class="calendar-header">
+          {calendarData.header.daysOfWeek.map(v => &lt;div class="calendar-date">{v}&lt;/div>)}
+        &lt;/div>
+
+        &lt;div class="calendar-body">
+          {calendarData.days.map(v =>
+            &lt;div
+              class={
+                cc({ 'calendar-date': true,
+                  'prev-month': v.monthIdx === -1,
+                  'next-month': v.monthIdx === 1 })}>
+              &lt;button class={cc({ 'date-item': true, 'date-today': v.today })}>{v.d}&lt;/button>
+            &lt;/div>
+          )}
+
+        &lt;/div>
+      &lt;/div>
+    &lt;/div>)
+}
+
+// const Feedback = () => () => {
+//   return true
+// }
+
+export const Home = ({ match }) => () => {
+  // use this little data helper
+  // const nav = [
+  //   { '/': { label: 'Home', comp: null } },
+  //   { '/goals': { label: 'Goals', comp: Goals } },
+  //   { '/activity': { label: 'Activity', comp: Activity } },
+  //   { '/contacts': { label: 'Contact List', comp: Contacts } }
+  // ]
+
+  // console.log({ path: match.path, url: match.url })
+  // console.log((nav.map(v => Object.keys(v)[0])))
+
+  return (
+    &lt;div style="margin: 10px 0;">
+      &lt;ul style="margin: 0 0 10px 0;" class="tab tab-block">
+        &lt;li class="tab-item active">
+          &lt;Link to={`${match.url}goals`}>Goals&lt;/Link>
+        &lt;/li>
+        &lt;li class="tab-item">
+          &lt;Link to={`${match.url}contacts`}
+            class="badge" data-badge="9" >Contact List&lt;/Link>
+          &lt;Link to="#" >&lt;/Link>
+        &lt;/li>
+        &lt;li class="tab-item">
+          &lt;Link to={`${match.url}activity`}>Activity&lt;/Link>
+        &lt;/li>
+      &lt;/ul>
+      &lt;Route parent path={`${match.path}goals`} render={Goals} />
+      &lt;Route parent path={`${match.path}activity`} render={Activity} />
+      &lt;Route parent path={`${match.path}contacts`} render={Contacts} />
+    &lt;/div>
+  )
+}
+</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	Copyright © 2018-2019 - Eric Moore, & the contributors to Becca projects.
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on Thu Jan 31st 2019
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>
