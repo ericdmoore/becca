@@ -8,13 +8,50 @@ I largely use some church software on my phone -  because, you know, its 2018, a
 
 Becca is named after an easy way to remember that you can BCC her on regular ol' emails. If you have introduced your self to her before, then she will relentlessly copy/paste your messages as comments into some church system.
 
-## Use Cases
+I have left some of the language intentionally vague - because I intend to create a pluggable backend - so that you might be able to create your own backend-clicking-service for whatever crappy church or not-church software you have to use... maybe like city council websites, or other things that may be terrible all the way till hell freezes over.
+
+## Assuptions
 
 1. Everything has to be done from your phone (non-negotiable)(re-prioritize your list)(anything that does not have this as #1 is wrong)
-1. UI Bulk Comment
-    1. Human multi-selects users on Becca, and then sends them all the exact same message.
-1. Auto Tags Conversation Started.
-    1. Start a Text, Email, or Call and Becca will not that you started a conversation with that person.
+1. Users would like to just click to talk - and have Becca - deal with the note taking
+1. Church Staff does not mind if they dont get thre whole context - they just want to know that CRM-style touches are happening.
+1. Users are smart and willing to go through some workflow to create a UI Bulk Comment
+1. Churhces don't have the budget, care or fortitude to fix these ailing systems until they are unusable, broken, etc - thus without the budget this project is not likely to have immediate commercial application (But who knows). So for now, I'm just counting on the righteous indigntion of a few people who equally wont take it anymore.
+
+## Use Cases
+
+### Meat and Potatoes Use Case
+1. Becca User can start a Text, Email, or Call - Becca notes that you started a conversation with that person.
+1. A Becca User multi-selects some members from their class in Becca, and sends them all the exact same message.
+1. Becca Users can see their class members and sort them by attendance, engagement, and reach out to people who need some love.
+
+### Introductions
+
+1. Becca User Requests and Account
+1. Becca User Verifies Email account
+1. Becca User Logs into their account
+1. Becca User completes onboarding walkthrough
+    1. Becca User sends email w/ bcc to self | Class Admin | Department Staff as part of onboarding
+
+### Main Use Cases
+
+1. Becca User emails someone in the TO line - adds `becca@beccamail.org` to the bcc line - Becca processes the mail and makes the neccessary notes in the ChurchDB
+1. Logged In Becca User finds a class member in UI, presses call, - Becca processes the button press and makes the notes in the ChurchDB
+1. Logged In Becca User finds a class member in UI, presses text, - Becca processes the button press and makes the notes in the ChurchDB
+1. Becca User can sort and rank their class members by engageent, attendance, etc
+
+### Nice to Have Use Cases
+
+1. Becca User can create their own Groups - of class members.
+1. Becca Users can not reset their username or password via Becca, since their password is a pass-through
+1. Becca might be able to redirect them to a churchDB url
+1. Becca Users can see a dashboard of their activity and the goals set for them
+1. Becca Users can update settings, and 'chat' with Becca overe email
+
+
+Everything below this line will be moved to a different document eventually
+
+------------------------------------------------------------------------------
 
 ## Architecture
 
