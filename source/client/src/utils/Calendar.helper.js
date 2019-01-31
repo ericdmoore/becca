@@ -19,8 +19,6 @@
 // this should likely use built js date handling - but I am lazy today.
 // this is just so more readable to me today
 // it is bad for interationalization, for payload,
-
-// @ref: https://date-fns.org/v1.30.1/docs/eachDay
 //
 // take in a date
 // determmine mode - length | dow
@@ -33,13 +31,8 @@
 // return the date range mapped through the decorator
 
 // const chalk = require('chalk')
-
-import { range, move } from 'ramda/es'
-// import { startOfDay } from 'date-fns/start_of_day'
-// import { addDays } from 'date-fns/add_days'
-// import { lastDayOfMonth } from 'date-fns/last_day_of_month'
-// import { getDay } from 'date-fns/get_day'
-// import { eachDay } from 'date-fns/each_day'
+import { move } from 'ramda/es'
+import range from 'lodash-es/range'
 import { addDays, eachDayOfInterval, getDay, lastDayOfMonth, startOfDay } from 'date-fns/esm'
 
 export const CalendarData = (_args) => {

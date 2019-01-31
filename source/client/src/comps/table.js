@@ -39,7 +39,7 @@
 import { h } from 'hyperapp'
 /* eslint-enable no-unused-vars */
 
-import get from 'lodash.get'
+import get from 'lodash-es/get'
 // import deepSet from '../actions/index'
 
 const TableHeader = () => (state, actions) => {

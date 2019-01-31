@@ -29,7 +29,7 @@ import { RequestAcct } from './comps/RequestAcct.js'
 import * as allActions from './actions'
 
 // @import url('https://fonts.googleapis.com/css?family=Crimson+Text:600|Lato:300');
-import './styles/fonts.css'
+// import './styles/fonts.css'
 // import spectre from 'spectre.css/src/spectre.scss'
 // import spectreIcons from '../node_modules/spectre.css/src/spectre-icons.scss'
 // import spectreExp from '../node_modules/spectre.css/src/spectre-exp.scss'

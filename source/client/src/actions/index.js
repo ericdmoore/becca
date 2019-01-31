@@ -1,4 +1,4 @@
-import set from 'lodash.set'
+import set from 'lodash-es/set'
 
 export const deepSet = (_path, _newVal, _obj, delim = '.') => {
   const clone = Object.assign({}, _obj)

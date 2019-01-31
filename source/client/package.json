@@ -43,8 +43,8 @@
     "classcat": "^3.2.3",
     "date-fns": "^2.0.0-alpha.27",
     "hyperapp": "^1.2.9",
-    
     "lodash-es": "^4.17.11",
+    "ramda": "^0.26.1",
     "spectre.css": "^0.5.8"
   },
   "browserslist": "> 0.25%, not dead",
