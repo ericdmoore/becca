@@ -1,6 +1,6 @@
-# BECCA
+# <img src="/source/client/static/icons/Becca-Logo.svg" alt="Becca Logo" height="80"/>
 
-## ?Why
+## Why?
 
 I largely use some church software on my phone -  because, you know, its 2018, and I will wait no longer for them to get with the times. My main wish is that the chruch software would deprecate my usability wrapper by having digital systems that go and sin no more. If you are reading this and happen to make church software, for the love of everythng good - please read the use cases below.
 
