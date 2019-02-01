@@ -4,7 +4,7 @@ import {
   split as rSplit,
   pathOr as orPath } from 'ramda'
 import { path as Rpath } from 'rambda'
-import get from 'lodash.get'
+import get from 'lodash-es/get'
 
 const dotPath = rUseWith(rPath, [rSplit('.')])
 

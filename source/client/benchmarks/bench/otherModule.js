@@ -6,7 +6,7 @@ const Ramda = require('ramda')
 const holder = { a: { b: 2 } }
 const a = [ 'a', 'b' ]
 
-const suite = new Benchmark.Suite('path options from someModule')
+const suite = new Benchmark.Suite('path options from otherModule')
 
 suite.add(
   'Rambda.path',
